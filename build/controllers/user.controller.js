@@ -262,6 +262,7 @@ var editProfile = /*#__PURE__*/function () {
         email,
         photo
       } = req.body;
+      var io = req.app.get('io');
       yield _user.default.update({
         name,
         email,
@@ -271,6 +272,7 @@ var editProfile = /*#__PURE__*/function () {
           id_user: req.user.dataValues.id_user
         }
       });
+      io.emit('updateUsers');
       res.status(200).json({
         message: 'User updated successfully'
       });
