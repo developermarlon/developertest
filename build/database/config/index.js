@@ -16,10 +16,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 //define types user
 var roles = [{
-  name: 'superuser',
+  name: 'admin',
   state: 1
 }, {
-  name: 'admin',
+  name: 'client',
   state: 1
 }]; //define user
 
@@ -27,7 +27,8 @@ var users = [{
   name: 'Marlon Torres Lozano',
   email: 'developer.marlon.torres@gmail.com',
   password: 'semeolvido123',
-  role: 'superuser'
+  role: 'admin',
+  photo: 'https://res.cloudinary.com/hnhnaig2j/image/upload/v1617161423/default/default-user_ynpwjb.png'
 }];
 
 var main = _asyncToGenerator(function* () {

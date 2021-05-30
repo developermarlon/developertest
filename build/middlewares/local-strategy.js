@@ -8,6 +8,8 @@ var _bcrypt = _interopRequireDefault(require("bcrypt"));
 
 var _user = _interopRequireDefault(require("../database/models/user"));
 
+var _userRole = _interopRequireDefault(require("../database/models/user-role"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -23,14 +25,25 @@ _passport.default.use(new _passportLocal.Strategy({
       var user = yield _user.default.findOne({
         where: {
           email
-        }
+        },
+        include: [{
+          attributes: ['name'],
+          model: _userRole.default,
+          required: false
+        }]
       });
 
       if (user) {
         if (!(yield _bcrypt.default.compare(password, user.dataValues.password))) return callback(null, false, {
           message: 'Incorrect email or password.'
         });
-        return callback(null, user.dataValues.id_user, {
+        return callback(null, {
+          id_user: user.dataValues.id_user,
+          name: user.dataValues.name,
+          email: user.dataValues.email,
+          photo: user.dataValues.photo,
+          role: user.dataValues.user_role.dataValues.name
+        }, {
           message: 'Logged In Successfully'
         });
       } else {

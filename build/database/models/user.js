@@ -32,6 +32,9 @@ User.init({
     type: _sequelize.DataTypes.STRING(),
     required: true
   },
+  photo: {
+    type: _sequelize.DataTypes.STRING()
+  },
   role: _sequelize.DataTypes.INTEGER
 }, {
   sequelize: _db.default,

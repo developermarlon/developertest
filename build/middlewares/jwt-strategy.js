@@ -22,7 +22,7 @@ _passport.default.use(new _passportJwt.Strategy({
     try {
       var user = yield _user.default.findOne({
         where: {
-          id_user: jwtPayload.id
+          id_user: jwtPayload.id_user
         },
         include: [{
           model: _userRole.default,
@@ -32,6 +32,7 @@ _passport.default.use(new _passportJwt.Strategy({
       if (user) return callback(null, user);
       return callback(null, false);
     } catch (error) {
+      console.log(error);
       return callback(error);
     }
   });
