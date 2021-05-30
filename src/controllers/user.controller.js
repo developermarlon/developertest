@@ -149,6 +149,7 @@ export const register = async (req, res) => {
 export const editProfile = async (req, res) => {
     try {
         const {name, email, photo} = req.body
+        const io = req.app.get('io')
 
         await User.update(
             {
@@ -161,7 +162,7 @@ export const editProfile = async (req, res) => {
                 }
             }
         )
-
+        io.emit('updateUsers')
         res.status(200).json({message: 'User updated successfully'})
     }catch(error) {
         // console.log(error)
