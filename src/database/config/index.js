@@ -55,8 +55,6 @@ const main = (async () => {
             //encrypt password
             users[i].password = await bcrypt.hash(users[i].password, 10)
 
-            //await bcrypt.compare(password, user.password)
-
             //update user type by primary key
             users[i].role = role.dataValues.id_role
 
