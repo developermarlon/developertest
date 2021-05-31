@@ -6,6 +6,3 @@ User.belongsTo(UserRole, {foreignKey: 'role'})
 
 //UserRole
 UserRole.hasOne(User, {foreignKey: 'role'})
-
-//MODEL User
-//User.hasMany(Appoiment, {foreignKey: 'id_user'}) 
